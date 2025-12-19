@@ -17,93 +17,65 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <DashboardHeader />
       
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-4">
         {/* Component Health Status - Top Strip */}
-        <div className="mb-6">
+        <div className="mb-4">
           <ComponentHealth components={mockData.componentHealth} />
         </div>
 
         {/* Main Grid - 12 columns */}
-        <div className="grid grid-cols-12 gap-4">
-          {/* TOP SUMMARY SECTION */}
-          {/* EDR Detections */}
-          <div className="col-span-12 lg:col-span-3">
-            <DetectionCard
-              title="EDR Detections"
-              detections={mockData.edrDetections}
-            />
+        <div className="grid grid-cols-12 gap-3">
+          {/* TOP SUMMARY SECTION - Detection Cards */}
+          <div className="col-span-6 lg:col-span-3">
+            <DetectionCard title="EDR Detections" detections={mockData.edrDetections} />
           </div>
-
-          {/* NDR Detections */}
-          <div className="col-span-12 sm:col-span-6 lg:col-span-3">
-            <DetectionCard
-              title="NDR Detections"
-              detections={mockData.ndrDetections}
-            />
+          <div className="col-span-6 lg:col-span-3">
+            <DetectionCard title="NDR Detections" detections={mockData.ndrDetections} />
           </div>
-
-          {/* WAF Detections */}
-          <div className="col-span-12 sm:col-span-6 lg:col-span-3">
-            <DetectionCard
-              title="WAF Detections"
-              detections={mockData.wafDetections}
-            />
+          <div className="col-span-6 lg:col-span-3">
+            <DetectionCard title="WAF Detections" detections={mockData.wafDetections} />
           </div>
-
-          {/* Firewall Overview */}
-          <div className="col-span-12 lg:col-span-3">
+          <div className="col-span-6 lg:col-span-3">
             <FirewallOverview
               totalDetections={mockData.firewallOverview.totalDetections}
               activeSessions={mockData.firewallOverview.activeSessions}
             />
           </div>
 
-          {/* ANALYSIS & CONTEXT SECTION */}
-          {/* Top Affected Endpoints */}
+          {/* MIDDLE SECTION - Tables & Status */}
           <div className="col-span-12 lg:col-span-4">
             <TopEndpointsTable endpoints={mockData.topEndpoints} />
           </div>
-
-          {/* Vulnerabilities Overview */}
-          <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+          <div className="col-span-6 lg:col-span-2">
             <VulnerabilitiesOverview data={mockData.vulnerabilities} />
           </div>
-
-          {/* Endpoint Status */}
-          <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+          <div className="col-span-6 lg:col-span-2">
             <EndpointStatus
               connected={mockData.endpointStatus.connected}
               disconnected={mockData.endpointStatus.disconnected}
             />
           </div>
-
-          {/* Recent Events - Live Feed */}
-          <div className="col-span-12 lg:col-span-6">
+          <div className="col-span-12 lg:col-span-4 lg:row-span-2">
             <RecentEvents events={mockData.recentEvents} />
           </div>
 
-          {/* Active Attackers */}
-          <div className="col-span-12 sm:col-span-6 lg:col-span-3">
+          {/* THREAT SECTION - Attackers & Rules */}
+          <div className="col-span-6 lg:col-span-2">
             <ActiveAttackers
               total={mockData.activeAttackers.total}
               topIPs={mockData.activeAttackers.topIPs}
             />
           </div>
-
-          {/* Top Intruders */}
-          <div className="col-span-12 sm:col-span-6 lg:col-span-3">
+          <div className="col-span-6 lg:col-span-2">
             <TopIntruders intruders={mockData.topIntruders} />
           </div>
-
-          {/* TREND & RULES SECTION */}
-          {/* Detection Volume Chart */}
-          <div className="col-span-12 lg:col-span-8">
-            <DetectionVolumeChart data={mockData.detectionVolume} />
-          </div>
-
-          {/* Top Triggered Rules */}
           <div className="col-span-12 lg:col-span-4">
             <TopTriggeredRules rules={mockData.topTriggeredRules} />
+          </div>
+
+          {/* BOTTOM SECTION - Chart */}
+          <div className="col-span-12">
+            <DetectionVolumeChart data={mockData.detectionVolume} />
           </div>
         </div>
       </main>
